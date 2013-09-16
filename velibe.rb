@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 ## My Velib Querier
 
@@ -5,8 +6,9 @@ require 'net/http'
 require 'net/https' # pas nécessaire
 require 'json'
 
-station = 10035
+def_station = 10035
 
+## Class API
 class ApiVelib
 
   def initialize
@@ -22,7 +24,7 @@ class ApiVelib
     @http = Net::HTTP.new(@base_uri.host, 443)  # doit être parsée
     @http.use_ssl = true
     @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    puts "Connected to APi"
+    puts "Connected to VelibApi"
   end
 
 
@@ -46,5 +48,14 @@ class ApiVelib
 end
 
 
+## Main
 api = ApiVelib.new
-api.get_station(station)
+
+if ARGV.length==0
+  puts "Station par défault:"
+  api.get_station(def_station)
+else
+  puts "Affichage des Stations #{ARGV.join(", ")}:"
+  ARGV.each{|sta| api.get_station(sta)}
+
+end
