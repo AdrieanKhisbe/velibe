@@ -25,8 +25,12 @@ request = Net::HTTP::Get.new(uri.request_uri)
 resp = http.request(request)
 
 if resp.is_a?(Net::HTTPSuccess)
-  puts resp.body
+  data = JSON.parse(resp.body)
+
+  ## print all:    data.each{|k,v| puts "#{k}: #{v}"}
+  puts "Station #{data["name"].capitalize}:  #{data["available_bikes"]} Velo(s) libre(s) pour #{data["available_bike_stands"]} places libres"
+
 else
   p resp
-  puts "Error"
+  puts "Damn ErrorOccured"
 end
