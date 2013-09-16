@@ -7,30 +7,44 @@ require 'json'
 
 station = 10035
 
-## crée URL
-uri = 'https://api.jcdecaux.com/vls/v1/stations'
-uri << "/#{station}" if station
-uri = URI.parse(uri)
-params = { :contract => "paris",
-  :apiKey => "c9ce7179fe009f45d27565e5de702fab6da12dcd" }
-uri.query = URI.encode_www_form(params)
+class ApiVelib
 
-## Coonection HTTPS
-http = Net::HTTP.new(uri.host, 443)
-http.use_ssl = true
-http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  def initialize
+    @api = "https://api.jcdecaux.com"
+    @params = { :contract => "paris",
+      :apiKey => "c9ce7179fe009f45d27565e5de702fab6da12dcd" }
+    @base_uri = URI.parse("#{@api}/vls/v1/stations")
+    self.connect_api
+  end
 
-request = Net::HTTP::Get.new(uri.request_uri)
 
-resp = http.request(request)
+  def connect_api
+    @http = Net::HTTP.new(@base_uri.host, 443)  # doit être parsée
+    @http.use_ssl = true
+    @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    puts "Connected to APi"
+  end
 
-if resp.is_a?(Net::HTTPSuccess)
-  data = JSON.parse(resp.body)
 
-  ## print all:    data.each{|k,v| puts "#{k}: #{v}"}
-  puts "Station #{data["name"].capitalize}:  #{data["available_bikes"]} Velo(s) libre(s) pour #{data["available_bike_stands"]} places libres"
+  public
+  def get_station(station_number)
+    ## récupère données
+    uri = URI.parse("#{@base_uri}/#{station_number}")
+    uri.query = URI.encode_www_form(@params)
+    apirequest = Net::HTTP::Get.new(uri.request_uri)  ## bug
+    resp = @http.request(apirequest)
 
-else
-  p resp
-  puts "Damn ErrorOccured"
+    ## affiche station
+    if resp.is_a?(Net::HTTPSuccess)
+      data = JSON.parse(resp.body)
+      ## print all:    data.each{|k,v| puts "#{k}: #{v}"}
+      puts "Station #{data["name"].capitalize}:  #{data["available_bikes"]} Velo(s) libre(s) pour #{data["available_bike_stands"]} places libres"
+    else
+      puts "Damn ErrorOccured: #{resp}"
+    end
+  end
 end
+
+
+api = ApiVelib.new
+api.get_station(station)
