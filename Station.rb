@@ -5,14 +5,15 @@ class Station
   # §later: geoloc
   def initialize (json)
     # TODO: sanity check of jzon
-
-    @name = json[:name].capitalize
+    @name = json[:name].capitalize # strange, don't accept symbol as key
+    # ¤note: pas par défault, faut le demander au parser. ( :symbolize_names => true)
+    # coud have both in rail with with_indifferent_access (HashWithIndifferentAccess)
     @available_bikes = json[:available_bikes]
     @available_bike_stands = json[:available_bike_stands]
   end
 
   def to_s
-    puts "Station #{@name}:  #{@available_bikes} Velo(s) libre(s) pour #{@available_bike_stands} places libres"
+    "Station #{@name}:  #{@available_bikes} Velo(s) libre(s) pour #{@available_bike_stands} places libres"
   end
 
   def can_leave?
@@ -27,8 +28,9 @@ class Station
     self.can_leave? && station.can_go?
   end
 
-  def self.string_for(json) # rename
-    self.new(json).to_s
+  # rename §keep?
+  def self.string_for_json(json)
+    Station.new(json).to_s
   end
 
 end

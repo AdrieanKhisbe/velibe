@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+require 'net/http'
+require 'net/https' # pas nécessaire
+require 'json'
+# §todo logging
+
 class ApiVelib
   def initialize
     @api = "https://api.jcdecaux.com"
@@ -27,12 +32,13 @@ class ApiVelib
 
     ## affiche station
     if resp.is_a?(Net::HTTPSuccess)
-      data = JSON.parse(resp.body)
-      # p data
+      data = JSON.parse(resp.body, symbolize_names: true)
+      # puts data
       ## print all:    data.each{|k,v| puts "#{k}: #{v}"}
-      puts Station.string_for(data)
+      return Station.new(data)
     else
       puts "Damn ErrorOccured: #{resp}"
+      nil
     end
   end
 end

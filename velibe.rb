@@ -2,13 +2,10 @@
 # -*- coding: utf-8 -*-
 ## My Velib Querier
 
-require 'net/http'
-require 'net/https' # pas nécessaire
-require 'json'
-require 'ApiVelib' # why?
-require 'Station'
+require_relative 'ApiVelib' # why?
+require_relative 'Station'
 
-def_station = 1003
+def_station = 10035
 API_KEY = "c9ce7179fe009f45d27565e5de702fab6da12dcd"
 
 
@@ -17,10 +14,9 @@ api = ApiVelib.new
 #todo: try catch network exception
 
 if ARGV.length == 0
-  puts "Station par défault:"
-  api.get_station(def_station)
+  puts "Station par défault:"  # see logging
+  puts api.get_station(def_station)
 else
   puts "Affichage des Stations #{ARGV.join(", ")}:"
-  ARGV.each{|sta| api.get_station(sta)}
-
+  ARGV.each{|sta| puts api.get_station(sta)}
 end
