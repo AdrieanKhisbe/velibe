@@ -9,18 +9,23 @@ Application ligne de comamnde pour intérroger api.
 
 - puis calcul si trajet possible. (préenregistré: cehc velo puis attache)
   (nb disponnible, warning)
+- mode intéractif (conserve connexion)
+- Gestion des exeptions, reseau, etc (et test)
+- organisation pluggin
+- update données
 
 
 * Feature incrémentales
 
-** Basic
+** DONE Basic
 juste query à l'api
 classe request?
 
-** test/erros
+** Création Classe Station+Trajet
+regrouper dans meme fichier?  classes.rb ou un par fichier!
 
-
-** Création Classe Station
+** test/errors
+test connexion existante
 
 * Recherches
 ** ruby
@@ -30,12 +35,9 @@ https://github.com/visionmedia/commander
 http://linuxfr.org/users/16ar/journaux/velib-api-rest-de-jcdecaux-acces-en-go
 https://developer.jcdecaux.com/#/opendata/vls?page=dynamic
 *** Identification.
-Clé d'API
-c9ce7179fe009f45d27565e5de702fab6da12dcd
-utiliser clé:
-GET https://api.jcdecaux.com/vls/v1/stations?contract={contract_name}&apiKey={api_key}
-
-GET https://api.jcdecaux.com/vls/v1/stations?contract=paris&apiKey=c9ce7179fe009f45d27565e5de702fab6da12dcd
+- Clé d'API :: c9ce7179fe009f45d27565e5de702fab6da12dcd
+- utiliser clé :: GET https://api.jcdecaux.com/vls/v1/stations?contract={contract_name}&apiKey={api_key}
+                  GET https://api.jcdecaux.com/vls/v1/stations?contract=paris&apiKey=c9ce7179fe009f45d27565e5de702fab6da12dcd
 
 contract=paris
 *** Format données
@@ -80,7 +82,7 @@ donnée station
 https://api.jcdecaux.com/vls/v1/stations/{station_number}?contract={contract_name} HTTP/1.1
 
 Liste des stations: GET https://api.jcdecaux.com/vls/v1/stations HTTP/1.1
-*** station intéressante
+*** stations intéressantes
 | Numéro | addresse                        | lieu                 |
 |--------+---------------------------------+----------------------|
 |   5020 | 03 RUE DES FOSSES SAINT BERNARD | institut monde arabe |
@@ -91,3 +93,15 @@ Liste des stations: GET https://api.jcdecaux.com/vls/v1/stations HTTP/1.1
 |  10031 | 48 RUE LOUIS BLANC              | bulle                |
 |  19003 | 3 QUAI DE LA SEINE              | mk2 seine            |
 |  19004 | 4 QUAI DE LA LOIRE              | mk2 loire            |
+
+*** Trajet
+
+| Nom      | Depart | Arrivee | Retour? |
+|----------+--------+---------+---------|
+| mk2loire |  10035 |   19004 | bof     |
+| mk2seine |  10035 |   19003 | bof     |
+|          |        |         |         |
+
+Idée trajet avec station départ flexible
+
+Commande à options pour départ de maison
