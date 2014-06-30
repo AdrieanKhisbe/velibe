@@ -5,18 +5,26 @@
 require_relative 'ApiVelib' # why?
 require_relative 'Station'
 
-def_station = 10035
 API_KEY = "c9ce7179fe009f45d27565e5de702fab6da12dcd"
 
+# Default values
+stations = [10035, 19003, 19004, 10031]
 
 ## Main
 api = ApiVelib.new
 #todo: try catch network exception
+# §tosingleton!!
 
 if ARGV.length == 0
   puts "Station par défault:"  # see logging
-  puts api.get_station(def_station)
 else
-  puts "Affichage des Stations #{ARGV.join(", ")}:"
-  ARGV.each{|sta| puts api.get_station(sta)}
+  # §askif there is no better way?
+  # maybe all in class method of Station.
+  # qui aurait api et reste (atbleau vide défault)
+  stations = ARGV
 end
+
+
+puts "Velibe >> Stations #{stations.join(", ")}:"
+stations.each{ |sta| puts "        > #{api.get_station(sta)}" }
+# garder sta àgauche du chevron?
