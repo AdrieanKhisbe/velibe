@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+# §todo: in module
 class Station
   attr_reader  :name, :available_bikes, :available_bike_stands
 
