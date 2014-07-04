@@ -4,28 +4,7 @@
 
 require 'VeLibe'
 
-# Default values
-stations = [10035, 19003, 19004, 10031]
-
 ## Main
-api = ApiVelib.new
-#todo: try catch network exception
-# §tosingleton!!
-# §maybe: inversion de controle? c'est station, initialisée avec le numéro
-# qui appelle l'api plutot que api qui controle station?
-# (rendrait transparent appel à station)
-# (méthode update & update!)
+VeLibe.print_stations(ARGV)
 
-if ARGV.length == 0
-  puts "Station par défault:"  # see logging
-else
-  # §askif there is no better way?
-  # maybe all in class method of Station.
-  # qui aurait api et reste (atbleau vide défault)
-  stations = ARGV
-end
-
-
-puts "Velibe >> Stations #{stations.join(", ")}:"
-stations.each{ |sta| puts "        > #{api.get_station(sta)}" }
 # garder sta àgauche du chevron?

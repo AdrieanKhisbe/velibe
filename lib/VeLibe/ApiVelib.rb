@@ -2,7 +2,10 @@
 require 'net/http'
 require 'net/https' # pas nécessaire
 require 'json'
+
 # §todo logging 𝄞
+# §todo: put in loggin.
+# §see : singleton : require and include Singleton
 
 class ApiVelib
 
