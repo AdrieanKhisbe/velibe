@@ -4,13 +4,15 @@ require 'fileutils'
 require 'pathname'
 require 'sqlite3'
 require 'active_record'
+require 'csv'
 
 module VeLibe
 
   module Database
     NAME = "~/.velib.db"
     PATH = Pathname.new(NAME).expand_path # .to_s?
-    CSV  = "data/Paris.csv"
+    DATA_CSV  = "../../data/Paris.csv"
+    #  §see: http://stackoverflow.com/questions/7828066/accessing-files-packaged-into-a-ruby-gem
 
     def self.exist?
       PATH.exist? # §check
@@ -19,7 +21,6 @@ module VeLibe
     def self.active_connect
       ActiveRecord::Base.establish_connection( adapter: 'sqlite3',
                                                database: PATH.to_s)
-
     end
 
     def self.create
@@ -34,11 +35,12 @@ module VeLibe
     end
 
     def self.connexion
-      SQlite3::Database.new(PATH.to_s)
+      return SQlite3::Database.new(PATH.to_s)
       # §see:options
-
+      # §maybe: delete?  [not that working?]
     end
-# version block?
+    # §todo: version block?
+
     def self.prune
       #§later: check no connected?
       FileUtils.rm(PATH) if exist?
@@ -65,8 +67,18 @@ module VeLibe
 
     def self.populate
       # Use fast cv
-      csv_file =  File.join(File.dirname(File.expand_path(__FILE__)), CSV)
+      csv_file =  File.join(File.dirname(File.expand_path(__FILE__)), DATA_CSV)
       puts "TODO: process #{csv_file}"
+
+      # ¤note: transaction for faster insert
+      ActiveRecord::Base.transaction do
+        CSV.foreach(csv_file, headers: true, converters: :numeric) do |row| #§TODO: converter
+          #  header_converters: :underscore -> tried but get: NoMethodError: undefined method `arity' for nil:NilClass
+          Models::Station.create number: row['Number'], name: row['Name'], address: row['Address'],
+                                 latitude: row['Latitude'], longitude: row['Longitude']
+          # ¤note: inspect send back a hash
+        end
+      end
     end
 
   end
