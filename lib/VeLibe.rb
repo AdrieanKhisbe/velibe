@@ -2,6 +2,8 @@
 require "VeLibe/version"
 require 'VeLibe/ApiVelib'
 require 'VeLibe/Station'
+require 'VeLibe/Database'
+
 
 module VeLibe
 
