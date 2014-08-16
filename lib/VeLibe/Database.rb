@@ -19,8 +19,8 @@ module VeLibe
     end
 
     def self.active_connect
-      ActiveRecord::Base.establish_connection( adapter: 'sqlite3',
-                                               database: PATH.to_s)
+      ActiveRecord::Base.establish_connection(adapter: 'sqlite3',
+                                              database: PATH.to_s)
     end
 
     def self.create
@@ -49,15 +49,24 @@ module VeLibe
     # privates!
     def self.make_schema
       ActiveRecord::Schema.define do
+
         create_table :stations do |t|
           t.integer :number
           t.string  :name
           t.string  :address
           t.float   :latitude
           t.float   :longitude
-
           t.index   :number # ¤note: must be declared before
+        end
 
+        create_table :statuses do |t|
+          t.integer :station_id
+          t.boolean :status
+          t.integer  :bike_stands
+          t.integer  :available_bikes
+          t.integer  :available_bike_stands
+          t.timestamp :last_update
+          # t.timestamps
         end
 
         #§todo: crate others
@@ -68,14 +77,15 @@ module VeLibe
     def self.populate
       # Use fast cv
       csv_file =  File.join(File.dirname(File.expand_path(__FILE__)), DATA_CSV)
-      puts "TODO: process #{csv_file}"
-
+      # ¤see: stopwatch
+      puts "Populate Database from csv Station description"
       # ¤note: transaction for faster insert
       ActiveRecord::Base.transaction do
         CSV.foreach(csv_file, headers: true, converters: :numeric) do |row| #§TODO: converter
           #  header_converters: :underscore -> tried but get: NoMethodError: undefined method `arity' for nil:NilClass
-          Models::Station.create number: row['Number'], name: row['Name'], address: row['Address'],
-                                 latitude: row['Latitude'], longitude: row['Longitude']
+
+          Models::Station.create(number: row['Number'], name: row['Name'], address: row['Address'],
+                                 latitude: row['Latitude'], longitude: row['Longitude'])
           # ¤note: inspect send back a hash
         end
       end
