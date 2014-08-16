@@ -26,8 +26,8 @@ module VeLibe
 
     puts "Velibe >> Stations #{stations.join(", ")}:"
     stations.each{ |sta| puts "        > #{Api.get_station(sta)}" }
-    end
+  end
     # une version qui les renvoi?
 
 
-  end
+end

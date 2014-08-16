@@ -5,15 +5,14 @@ Ma petite appli pour PlanVelib
 
 * Idees
 Application ligne de comamnde pour intérroger api.
-- initiallement: juste affiche nb vélo disponible, attaches. non station
++ initiallement: juste affiche nb vélo disponible, attaches. non station
 
-- puis calcul si trajet possible. (préenregistré: cehc velo puis attache)
++ puis calcul si trajet possible. (préenregistré: check velo puis attache)
   (nb disponnible, warning)
-- mode intéractif (conserve connexion)
-- Gestion des exeptions, reseau, etc (et test)
-- organisation pluggin
-- update données
-
++ mode intéractif (conserve connexion)
++ Gestion des exeptions, reseau, etc (et test)
++ organisation pluggin
++ update données
 
 * Feature incrémentales
 
