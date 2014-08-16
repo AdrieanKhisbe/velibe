@@ -10,6 +10,7 @@ module VeLibe
   module Database
     NAME = "~/.velib.db"
     PATH = Pathname.new(NAME).expand_path # .to_s?
+    CSV  = "data/Paris.csv"
 
     def self.exist?
       PATH.exist? # §check
@@ -23,6 +24,28 @@ module VeLibe
 
     def self.create
       active_connect
+      make_schema
+      populate
+    end
+
+    def self.create!
+      prune
+      create
+    end
+
+    def self.connexion
+      SQlite3::Database.new(PATH.to_s)
+      # §see:options
+
+    end
+# version block?
+    def self.prune
+      #§later: check no connected?
+      FileUtils.rm(PATH) if exist?
+    end
+
+    # privates!
+    def self.make_schema
       ActiveRecord::Schema.define do
         create_table :stations do |t|
           t.integer :number
@@ -34,23 +57,17 @@ module VeLibe
           t.index   :number # ¤note: must be declared before
 
         end
-        # crate others
+
+        #§todo: crate others
+
       end
-
     end
 
-    def self.connexion
-      SQlite3::Database.new(PATH.to_s)
-      # §see:options
-
-
-    end
-# version block?
-    def self.prune
-      #§later: check no connected?
-      FileUtils.rm(PATH) if exist?
+    def self.populate
+      # Use fast cv
+      csv_file =  File.join(File.dirname(File.expand_path(__FILE__)), CSV)
+      puts "TODO: process #{csv_file}"
     end
 
   end
-
 end
