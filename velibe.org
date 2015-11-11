@@ -3,7 +3,27 @@
 
 Ma petite appli pour PlanVelib
 
-* Idees
+* REFRESH
+
+- virer notes et commentaire ruby génériques dans saphir
+- rename to velibe underscore
+- Setup CI + code climate (appli: https://mattbrictson.com/building-a-gem-in-2015)
+- Clean a bit
+- Changelog MD
+- find cli + option parser lib
+- maybe see HTTP client lib
+- option lib
+- test structure
+
+
+Idée features
+- recherche station (dans data)
+- recherche statino à partir adresse (call to openstreet)
+- mode watch
+- statistics analyser? (serait plus appliweb en ligne)
+
+
+* [Previous] Idees
 Application ligne de comamnde pour intérroger api.
 + initiallement: juste affiche nb vélo disponible, attaches. non station
 
@@ -20,17 +40,19 @@ Application ligne de comamnde pour intérroger api.
 juste query à l'api
 classe request?
 
-** Création Classe Station+Trajet
+** Création Classe Station + Trajet
 regrouper dans meme fichier?  classes.rb ou un par fichier!
 
 ** test/errors
 test connexion existante
 
-* Recherches
+* Recherches Réaliser
 ** ruby
 options lignes de commande ruby
 https://github.com/visionmedia/commander
-** aPI
+
+
+** API
 http://linuxfr.org/users/16ar/journaux/velib-api-rest-de-jcdecaux-acces-en-go
 https://developer.jcdecaux.com/#/opendata/vls?page=dynamic
 *** Identification.
@@ -81,6 +103,7 @@ donnée station
 https://api.jcdecaux.com/vls/v1/stations/{station_number}?contract={contract_name} HTTP/1.1
 
 Liste des stations: GET https://api.jcdecaux.com/vls/v1/stations HTTP/1.1
+
 *** stations intéressantes
 | Numéro | addresse                        | lieu                 |
 |--------+---------------------------------+----------------------|

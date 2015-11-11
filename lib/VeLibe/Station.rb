@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# §todo: new Stationn will go in module
+# §todo: new Station will go in module
+# Todo: put in sub file?
 
 
 class Station
@@ -12,7 +13,8 @@ class Station
     # TODO: sanity check of jzon
     @name = json[:name].capitalize # strange, don't accept symbol as key
     # ¤note: pas par défault, faut le demander au parser. ( :symbolize_names => true)
-    # coud have both in rail with with_indifferent_access (HashWithIndifferentAccess)
+    # coud have both in rail with with_indifferent_access
+    # TODO: extract Comment elsewhere.
     @available_bikes = json[:available_bikes]
     @available_bike_stands = json[:available_bike_stands]
     # §todo: more data to capture, then use
@@ -27,19 +29,21 @@ class Station
 
   # §maybe: to_csv
 
+  # FIXME: replace comment with doc
+  # TODO: maybe extract in Trajet: + method: velo dispo, stand dispo
   def can_leave?
-    @available_bikes > 0 && @available_bike # test si nil quand pas de velo
+    @available_bikes > 0 and @available_bike # test si nil quand pas de velo
   end
 
   def can_go?
-    @available_bikes_stands > 0 && @available_bike_stands # test si nil quand pas de velo
+    @available_bikes_stands > 0 and @available_bike_stands # test si nil quand pas de velo
   end
 
   def can_go_to?(station)
-    self.can_leave? && station.can_go?
+    self.can_leave? and station.can_go?
   end
 
-  # rename §keep?
+  #  TODO rename
   def self.string_for_json(json)
     Station.new(json).to_s
   end

@@ -9,9 +9,9 @@ require 'csv'
 module VeLibe
 
   module Database
-    NAME = "~/.velib.db"
+    NAME = '~/.velib.db' # TODO: more generic
     PATH = Pathname.new(NAME).expand_path # .to_s?
-    DATA_CSV  = "../../data/Paris.csv"
+    DATA_CSV  = '../../data/Paris.csv'
     #  §see: http://stackoverflow.com/questions/7828066/accessing-files-packaged-into-a-ruby-gem
 
     def self.exist?
@@ -78,7 +78,7 @@ module VeLibe
       # Use fast cv
       csv_file =  File.join(File.dirname(File.expand_path(__FILE__)), DATA_CSV)
       # ¤see: stopwatch
-      puts "Populate Database from csv Station description"
+      puts 'Populate Database from csv Station description'
       # ¤note: transaction for faster insert
       ActiveRecord::Base.transaction do
         CSV.foreach(csv_file, headers: true, converters: :numeric) do |row| #§TODO: converter
