@@ -35,7 +35,7 @@ class ApiVelib
     else
       data = JSON.parse(resp.body, symbolize_names: true)
       # puts data # log
-      return StationStatus.from_json(data)
+      return StationStatus.from_hash(data)
     end
   end
 

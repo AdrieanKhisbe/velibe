@@ -26,7 +26,7 @@ class StationStatus
   def can_leave?
     @available_bikes > 0 and not @available_bikes.nil? # test si nil quand pas de velo
   end
-
+  # MAYBE REPLACE VALUE: 0 no, 1 un peu, 2 attention
   def can_go?
     @available_bike_stands > 0 and not @available_bike_stands # test si nil quand pas de velo
   end
@@ -36,11 +36,11 @@ class StationStatus
   end
 
   #  TODO rename
-  def self.string_from_json(json)
-    StationStatus.from_json(json).to_s
+  def self.string_from_hash(json)
+    StationStatus.from_hash(json).to_s
   end
 
-  def self.from_json(json)
+  def self.from_hash(json)
     # TODO: sanity check of jzon
     name = json[:name].capitalize #RAISE EROR if neede
     available_bikes = json[:available_bikes]
