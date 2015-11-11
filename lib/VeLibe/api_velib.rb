@@ -1,50 +1,30 @@
 # -*- coding: utf-8 -*-
-require 'net/http'
-require 'net/https' # pas nécessaire
+require 'http'
 require 'json'
 
-# §todo logging 𝄞
-# §todo: put in loggin.
-# §see : singleton : require and include Singleton
+module Velibe
+  class ApiVelib
 
-class ApiVelib
+    API_KEY = 'c9ce7179fe009f45d27565e5de702fab6da12dcd'
+    # TODO -> in conf file or env (for public release.) (see framework)
 
-  API_KEY = 'c9ce7179fe009f45d27565e5de702fab6da12dcd'
-  # TODO -> in conf file or env (for public release.) (see framework)
+    API_ENDPOINT = 'https://api.jcdecaux.com'
+    API_PARAM= {contract: 'paris', apiKey: API_KEY}
+    API_BASE_URI = "#{API_ENDPOINT}/vls/v1/stations"
 
-  def initialize
-    @api = 'https://api.jcdecaux.com'
-    @params = {contract: 'paris', apiKey: API_KEY}
-    @base_uri = URI.parse("#{@api}/vls/v1/stations")
-    connect_api
-    # Maybe: optional connect
-  end
+    def self.get_station(station_number)
+      uri = "#{API_BASE_URI}/#{station_number}"
+      response = HTTP.get(uri, params: API_PARAM)
 
-
-  public
-  def get_station(station_number)
-    ## récupère données
-    uri = URI.parse("#{@base_uri}/#{station_number}") # voir autres adresses api fonction helper
-    uri.query = URI.encode_www_form(@params)
-    api_request = Net::HTTP::Get.new(uri.request_uri)  ## bug
-    resp = @http.request(api_request)
-    # §see: multirequest
-
-    unless resp.is_a? Net::HTTPSuccess
-      raise "Damn ErrorOccured: #{resp}"
-    else
-      data = JSON.parse(resp.body, symbolize_names: true)
-      # puts data # log
-      return StationStatus.from_hash(data)
+      if response.code == 200
+        data = JSON.parse(response, symbolize_names: true)
+        return StationStatus.from_hash(data)
+      else
+        nil # TODO: maybe raise error! (and handle 404, and no internet)
+      end
     end
-  end
+   def self.get_stations()
+   end
 
-  private
-  def connect_api
-    @http = Net::HTTP.new(@base_uri.host, 443)  # doit être parsée
-    @http.use_ssl = true
-    @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    puts 'Connected to VelibApi' # log
   end
-
 end
