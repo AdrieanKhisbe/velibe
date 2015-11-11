@@ -50,4 +50,12 @@ class StationStatus
     self.new(name, available_bikes, available_bike_stands)
   end
 
+  # MAYBE Might belong in formater?
+  def self.print_from_json(json_string, prefix='')
+    data = JSON.parse(json_string, symbolize_names: true)
+    status = StationStatus.from_hash(data)
+    puts "#{prefix}#{status}"
+    status
+  end
+
 end
