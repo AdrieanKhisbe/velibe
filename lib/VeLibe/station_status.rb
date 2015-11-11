@@ -3,24 +3,23 @@
 # §todo: new Station will go in module
 # Todo: put in sub file?
 
-# TODO: rename to station status!
-class Station
+class StationStatus
   attr_reader  :name, :available_bikes, :available_bike_stands
 
   def initialize (name, available_bikes, available_bike_stands)
     @name= name
-    @available_bikes= available_bikes
+    @available_bikes = available_bikes
     @available_bike_stands= available_bike_stands
     # TODO: creation Timestamp
   end
 
   def to_s
     "Station #{@name}:  #{@available_bikes} Velo(s) libre(s) pour #{@available_bike_stands} places libres"
-    # §bonux: padding!!
-    # §bonux: color selon valeur!
   end
 
-  # §maybe: to_csv
+  def to_csv(sep = ';')
+    [@name, @available_bikes, @available_bike_stands].join(sep)
+  end
 
   # FIXME: replace comment with doc
   # TODO: maybe extract in Trajet: + method: velo dispo, stand dispo
@@ -29,7 +28,7 @@ class Station
   end
 
   def can_go?
-    @available_bikes_stands > 0 and not @available_bike_stands # test si nil quand pas de velo
+    @available_bike_stands > 0 and not @available_bike_stands # test si nil quand pas de velo
   end
 
   def can_go_to?(station)
@@ -37,8 +36,8 @@ class Station
   end
 
   #  TODO rename
-  def self.string_for_json(json)
-    Station.from_json(json).to_s
+  def self.string_from_json(json)
+    StationStatus.from_json(json).to_s
   end
 
   def self.from_json(json)

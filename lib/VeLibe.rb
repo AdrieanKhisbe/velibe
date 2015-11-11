@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'velibe/version'
 require 'velibe/api_velib'
-require 'velibe/station'
+require 'velibe/station_status'
 require 'velibe/database'
 require 'velibe/models'
 
