@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe VeLibe do
+describe do
   it 'has a version number' do
-    expect(VeLibe::VERSION).not_to be nil
+    expect(Velibe::VERSION).not_to be nil
   end
 
   it 'does something useful' do

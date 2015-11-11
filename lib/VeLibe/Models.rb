@@ -2,7 +2,7 @@
 require 'active_record'
 
 # pour garder data
-module VeLibe
+module Velibe
   module Models
     class Station < ActiveRecord::Base
        has_many :status

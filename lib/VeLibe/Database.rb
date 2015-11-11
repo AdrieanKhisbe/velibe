@@ -6,7 +6,7 @@ require 'sqlite3'
 require 'active_record'
 require 'csv'
 
-module VeLibe
+module Velibe
 
   module Database
     NAME = '~/.velib.db' # TODO: more generic

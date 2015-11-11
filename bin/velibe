@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 ## My Velib Querier
 
-require 'VeLibe'
+require 'velibe'
 
 ## Main
-VeLibe.print_stations(ARGV)
+Velibe.print_stations(ARGV)
 
 # garder sta àgauche du chevron?
