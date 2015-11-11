@@ -1,20 +1,16 @@
-#+TITLE: Velibe
+#+TITLE: Velibe Development Notes
 #+AUTHOR: Adrien
 
 Ma petite appli pour PlanVelib
 
 * REFRESH
 
-- virer notes et commentaire ruby génériques dans saphir
-- brainstorm organisation
-- rename to velibe underscore
 - Setup CI + code climate (appli: https://mattbrictson.com/building-a-gem-in-2015)
-- Clean a bit + reorganise?
+- badges
 - Changelog MD
 - find cli + option parser lib
-- maybe see HTTP client lib
 - option lib
-- test structure
+- test structure?
 - db overkill?
 
 Idée features
@@ -24,38 +20,17 @@ Idée features
 - statistics analyser? (serait plus appliweb en ligne)
 - handle status
 
-* [Previous] Idees
-Application ligne de comamnde pour intérroger api.
-+ initiallement: juste affiche nb vélo disponible, attaches. non station
 
-+ puis calcul si trajet possible. (préenregistré: check velo puis attache)
-  (nb disponnible, warning)
-+ mode intéractif (conserve connexion)
-+ Gestion des exeptions, reseau, etc (et test)
-+ organisation pluggin
-+ update données
-
-* Feature incrémentales
-
-** DONE Basic
-juste query à l'api
-classe request?
-
-** Création Classe Station + Trajet
-regrouper dans meme fichier?  classes.rb ou un par fichier!
-
-** test/errors
-test connexion existante
-
-* Recherches Réaliser
+* Recherches Réalisées
 ** ruby
 options lignes de commande ruby
 https://github.com/visionmedia/commander
 
 
-** API
+** API Doc
 http://linuxfr.org/users/16ar/journaux/velib-api-rest-de-jcdecaux-acces-en-go
 https://developer.jcdecaux.com/#/opendata/vls?page=dynamic
+
 *** Identification.
 - Clé d'API :: c9ce7179fe009f45d27565e5de702fab6da12dcd
 - utiliser clé :: GET https://api.jcdecaux.com/vls/v1/stations?contract={contract_name}&apiKey={api_key}
