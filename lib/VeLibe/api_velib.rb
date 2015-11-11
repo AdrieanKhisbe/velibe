@@ -17,6 +17,7 @@ class ApiVelib
     @params = {contract: 'paris', apiKey: API_KEY}
     @base_uri = URI.parse("#{@api}/vls/v1/stations")
     connect_api
+    # Maybe: optional connect
   end
 
 
@@ -29,14 +30,12 @@ class ApiVelib
     resp = @http.request(api_request)
     # §see: multirequest
 
-    ## affiche station
-    if not resp.is_a?(Net::HTTPSuccess)
+    unless resp.is_a? Net::HTTPSuccess
+      raise "Damn ErrorOccured: #{resp}"
+    else
       data = JSON.parse(resp.body, symbolize_names: true)
       # puts data # log
-      return Station.new(data)
-    else
-      raise "Damn ErrorOccured: #{resp}"
-
+      return Station.from_json(data)
     end
   end
 

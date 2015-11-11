@@ -3,22 +3,15 @@
 # §todo: new Station will go in module
 # Todo: put in sub file?
 
-
+# TODO: rename to station status!
 class Station
   attr_reader  :name, :available_bikes, :available_bike_stands
 
-  # §maybe: numeros of favorites? (ou nicknames associées): jussieu, seine...
-
-  def initialize (json)
-    # TODO: sanity check of jzon
-    @name = json[:name].capitalize # strange, don't accept symbol as key
-    # ¤note: pas par défault, faut le demander au parser. ( :symbolize_names => true)
-    # coud have both in rail with with_indifferent_access
-    # TODO: extract Comment elsewhere.
-    @available_bikes = json[:available_bikes]
-    @available_bike_stands = json[:available_bike_stands]
-    # §todo: more data to capture, then use
-    # §later: geoloc
+  def initialize (name, available_bikes, available_bike_stands)
+    @name= name
+    @available_bikes= available_bikes
+    @available_bike_stands= available_bike_stands
+    # TODO: creation Timestamp
   end
 
   def to_s
@@ -32,11 +25,11 @@ class Station
   # FIXME: replace comment with doc
   # TODO: maybe extract in Trajet: + method: velo dispo, stand dispo
   def can_leave?
-    @available_bikes > 0 and @available_bike # test si nil quand pas de velo
+    @available_bikes > 0 and not @available_bikes.nil? # test si nil quand pas de velo
   end
 
   def can_go?
-    @available_bikes_stands > 0 and @available_bike_stands # test si nil quand pas de velo
+    @available_bikes_stands > 0 and not @available_bike_stands # test si nil quand pas de velo
   end
 
   def can_go_to?(station)
@@ -45,7 +38,16 @@ class Station
 
   #  TODO rename
   def self.string_for_json(json)
-    Station.new(json).to_s
+    Station.from_json(json).to_s
+  end
+
+  def self.from_json(json)
+    # TODO: sanity check of jzon
+    name = json[:name].capitalize #RAISE EROR if neede
+    available_bikes = json[:available_bikes]
+    available_bike_stands = json[:available_bike_stands]
+    # T
+    self.new(name, available_bikes, available_bike_stands)
   end
 
 end

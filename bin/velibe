@@ -7,4 +7,4 @@ require 'velibe'
 ## Main
 Velibe.print_stations(ARGV)
 
-# garder sta àgauche du chevron?
+# garder sta à gauche du chevron?

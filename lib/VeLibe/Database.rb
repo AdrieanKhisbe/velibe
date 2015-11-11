@@ -46,7 +46,7 @@ module Velibe
       FileUtils.rm(PATH) if exist?
     end
 
-    # privates!
+    #
     def self.make_schema
       ActiveRecord::Schema.define do
 
@@ -69,21 +69,21 @@ module Velibe
           # t.timestamps
         end
 
-        #§todo: crate others
+        #§todo: create others
 
       end
     end
 
     def self.populate
-      # Use fast cv
-      csv_file =  File.join(File.dirname(File.expand_path(__FILE__)), DATA_CSV)
-      # ¤see: stopwatch
+      # MAYBE: Use fast cv
+      csv_file =  File.join(File.dirname(File.expand_path(__FILE__)), DATA_CSV) # TODO: extract
+      # ¤see: stopwatch  > ???
       puts 'Populate Database from csv Station description'
       # ¤note: transaction for faster insert
       ActiveRecord::Base.transaction do
-        CSV.foreach(csv_file, headers: true, converters: :numeric) do |row| #§TODO: converter
+        CSV.foreach(csv_file, headers: true, converters: :numeric) do |row|
+          # §TODO: converter
           #  header_converters: :underscore -> tried but get: NoMethodError: undefined method `arity' for nil:NilClass
-
           Models::Station.create(number: row['Number'], name: row['Name'], address: row['Address'],
                                  latitude: row['Latitude'], longitude: row['Longitude'])
           # ¤note: inspect send back a hash
