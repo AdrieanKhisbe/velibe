@@ -8,12 +8,12 @@ module Velibe
     API_KEY = 'c9ce7179fe009f45d27565e5de702fab6da12dcd'
     # TODO -> in conf file or env (for public release.) (see framework)
 
-    API_ENDPOINT = 'https://api.jcdecaux.com'
+    API_HOST = 'https://api.jcdecaux.com'
     API_PARAM= {contract: 'paris', apiKey: API_KEY}
-    API_BASE_URI = "#{API_ENDPOINT}/vls/v1/stations"
+    API_BASE_URI = '/vls/v1/stations'
 
     def self.get_station(station_number)
-      uri = "#{API_BASE_URI}/#{station_number}"
+      uri = "#{API_HOST}#{API_BASE_URI}/#{station_number}"
       response = HTTP.get(uri, params: API_PARAM)
 
       if response.code == 200
@@ -23,7 +23,16 @@ module Velibe
         nil # TODO: maybe raise error! (and handle 404, and no internet)
       end
     end
-   def self.get_stations()
+
+   def self.get_stations(stations, &block)
+     result = []
+     HTTP.persistent(API_HOST) do |http|
+       stations.each do |station_number|
+         response = http.get("#{API_BASE_URI}/#{station_number}", params: API_PARAM)
+         result << ( block ? block.call(response) : response)
+       end
+     end
+     result
    end
 
   end

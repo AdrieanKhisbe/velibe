@@ -18,7 +18,19 @@ module Velibe
   def self.print_stations(stations)
     stations = Favorites if stations.empty? or !stations
     puts "Velibe >> Stations #{stations.join(', ')}:"
-    stations.each{ |sta| puts "        > #{ApiVelib.get_station(sta)}" }
+    stations.each { |station| puts "        > #{ApiVelib.get_station(sta)}" }
   end
+
+  def self.print_stations_bis(stations)
+    stations = Favorites if stations.empty? or !stations
+    puts "Velibe >> Stations #{stations.join(', ')}:"
+    ApiVelib.get_stations(stations) do |station|
+      status = StationStatus.from_hash(JSON.parse(station, symbolize_names: true))
+      puts "        > #{status}"
+      stations
+    end
+
+  end
+
 
 end

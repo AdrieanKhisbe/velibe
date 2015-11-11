@@ -7,6 +7,7 @@ class StationStatus
   attr_reader  :name, :available_bikes, :available_bike_stands
 
   def initialize (name, available_bikes, available_bike_stands)
+    # Maybe: enhance with bike_stand, and last_update
     @name= name
     @available_bikes = available_bikes
     @available_bike_stands= available_bike_stands
