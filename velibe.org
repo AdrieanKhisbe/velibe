@@ -1,27 +1,28 @@
 #+TITLE: Velibe
-#+AUTHOR: adrien
+#+AUTHOR: Adrien
 
 Ma petite appli pour PlanVelib
 
 * REFRESH
 
 - virer notes et commentaire ruby génériques dans saphir
+- brainstorm organisation
 - rename to velibe underscore
 - Setup CI + code climate (appli: https://mattbrictson.com/building-a-gem-in-2015)
-- Clean a bit
+- Clean a bit + reorganise?
 - Changelog MD
 - find cli + option parser lib
 - maybe see HTTP client lib
 - option lib
 - test structure
-
+- db overkill?
 
 Idée features
 - recherche station (dans data)
 - recherche statino à partir adresse (call to openstreet)
 - mode watch
 - statistics analyser? (serait plus appliweb en ligne)
-
+- handle status
 
 * [Previous] Idees
 Application ligne de comamnde pour intérroger api.

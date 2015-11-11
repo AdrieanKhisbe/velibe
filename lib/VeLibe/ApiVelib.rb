@@ -16,7 +16,7 @@ class ApiVelib
     @api = 'https://api.jcdecaux.com'
     @params = {contract: 'paris', apiKey: API_KEY}
     @base_uri = URI.parse("#{@api}/vls/v1/stations")
-    self.connect_api
+    connect_api
   end
 
 

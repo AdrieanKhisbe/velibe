@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Small Velib Utility}
   spec.description   = %q{Wrapper for Velib api, for no-fuss cycling}
 #  spec.homepage      = "" # then github?
-  spec.license       = 'MIT' # see other licences?
+  spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
