@@ -2,8 +2,8 @@
 require 'velibe/version'
 require 'velibe/api_velib'
 require 'velibe/station_status'
-require 'velibe/database'
-require 'velibe/models'
+require 'velibe/db/database'
+require 'velibe/db/models'
 
 module Velibe
 
