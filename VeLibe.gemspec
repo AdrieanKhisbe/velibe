@@ -7,11 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = 'Velibe'
   spec.version       = Velibe::VERSION
   spec.authors       = ['Adriean Khisbe']
-#  spec.email         = ["adriean.khisbe@live.fr"]
-# No mail for now
+  spec.email         = ["adriean.khisbe@live.fr"]
   spec.summary       = %q{Small Velib Utility}
   spec.description   = %q{Wrapper for Velib api, for no-fuss cycling}
-#  spec.homepage      = "" # then github?
+  spec.homepage      = 'https://github.com/AdrieanKhisbe/Velibe' 
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
