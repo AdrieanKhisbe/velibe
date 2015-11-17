@@ -15,7 +15,7 @@ Ma petite appli pour PlanVelib
 
 Idée features
 - recherche station (dans data)
-- recherche statino à partir adresse (call to openstreet)
+- recherche station à partir adresse (call to openstreet)
 - mode watch
 - statistics analyser? (serait plus appliweb en ligne)
 - handle status
@@ -32,9 +32,9 @@ http://linuxfr.org/users/16ar/journaux/velib-api-rest-de-jcdecaux-acces-en-go
 https://developer.jcdecaux.com/#/opendata/vls?page=dynamic
 
 *** Identification.
-- Clé d'API :: c9ce7179fe009f45d27565e5de702fab6da12dcd
+- Clé d'API :: REDACTED 
 - utiliser clé :: GET https://api.jcdecaux.com/vls/v1/stations?contract={contract_name}&apiKey={api_key}
-                  GET https://api.jcdecaux.com/vls/v1/stations?contract=paris&apiKey=c9ce7179fe009f45d27565e5de702fab6da12dcd
+                  
 
 contract=paris
 *** Format données

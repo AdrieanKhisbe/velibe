@@ -5,11 +5,10 @@ require 'json'
 module Velibe
   class ApiVelib
 
-    API_KEY = 'c9ce7179fe009f45d27565e5de702fab6da12dcd'
-    # TODO -> in conf file or env (for public release.) (see framework)
+    API_KEY = ENV['VELIBE_TOKEN'] || raise(Error, 'No token provided')
 
     API_HOST = 'https://api.jcdecaux.com'
-    API_PARAM= {contract: 'paris', apiKey: API_KEY}
+    API_PARAM= { contract: 'paris', apiKey: API_KEY }
     API_BASE_URI = '/vls/v1/stations'
 
     def self.get_station(station_number)
