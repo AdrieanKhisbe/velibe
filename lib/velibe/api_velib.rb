@@ -5,7 +5,7 @@ require 'json'
 module Velibe
   class ApiVelib
 
-    API_KEY = ENV['VELIBE_TOKEN'] || raise(Error, 'No token provided')
+    API_KEY = ENV['VELIBE_TOKEN'] || raise('No token provided')
 
     API_HOST = 'https://api.jcdecaux.com'
     API_PARAM= { contract: 'paris', apiKey: API_KEY }
