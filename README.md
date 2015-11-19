@@ -3,6 +3,11 @@ VeLibe
 
 *Wrapper for Velib api, for no-fuss cycling.*
 
+[![Gem Version](https://badge.fury.io/rb/velibe.svg)](http://badge.fury.io/rb/velibe)
+[![Build Status](https://travis-ci.org/AdrieanKhisbe/velibe.svg)](https://travis-ci.org/AdrieanKhisbe/velibe)
+[![Coverage Status](https://coveralls.io/repos/AdrieanKhisbe/velibe/badge.svg?branch=master&service=github)](https://coveralls.io/github/AdrieanKhisbe/velibe?branch=master)
+[![Code Climate](https://codeclimate.com/github/AdrieanKhisbe/velibe/badges/gpa.svg)](https://codeclimate.com/github/AdrieanKhisbe/velibe)
+
 CLI tool included to help you see if there is bikes around.
 
 So far *velibe* only support query of station. Handling of favorites, query by
