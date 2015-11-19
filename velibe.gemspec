@@ -25,6 +25,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'coveralls'
   spec.add_development_dependency 'jazz_fingers'
   spec.add_development_dependency 'method_source', '>= 0.8.2'
 end
