@@ -7,5 +7,7 @@ rvm:
   - jruby
   - jruby-head
 
+before_install: gem install bundler
+install: bundle install
 script:
-  - rake spec
+  - bundle exec rake spec
