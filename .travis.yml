@@ -2,13 +2,10 @@ language: ruby
 rvm:
   - 2.0.0
   - 2.1
-  - ruby-head
-  - rbx-2
-  - jruby
   - jruby-head
 
 before_install: gem install bundler
 install: bundle install
 script:
-  - export VELIBE_TOKEN = "junk"
+  - export VELIBE_TOKEN="junk"
   - bundle exec rake spec
