@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'velibe/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'Velibe'
+  spec.name          = 'velibe'
   spec.version       = Velibe::VERSION
   spec.authors       = ['Adriean Khisbe']
   spec.email         = ["adriean.khisbe@live.fr"]
   spec.summary       = %q{Small Velib Utility}
   spec.description   = %q{Wrapper for Velib api, for no-fuss cycling}
-  spec.homepage      = 'https://github.com/AdrieanKhisbe/Velibe' 
+  spec.homepage      = 'https://github.com/AdrieanKhisbe/velibe' 
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
