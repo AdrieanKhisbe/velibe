@@ -22,6 +22,8 @@ Just install the gem, and you'll have access to this wonderful tool :D
 The cli relies on the JcDecaux API. You need an api token to be able to use it.
 You can see the official site to get one [there]
 (https://developer.jcdecaux.com/#/opendata/vls?page=dynamic).
+You'll need to create an [account](https://developer.jcdecaux.com/#/account),
+and an acces token will be then granted
 
 This token is to be stored in the `VELIBE_TOKEN` variable environment.
 
