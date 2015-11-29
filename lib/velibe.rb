@@ -4,11 +4,13 @@ require 'velibe/api_velib'
 require 'velibe/station_status'
 require 'velibe/db/database'
 require 'velibe/db/models'
+require 'velibe/db/kv_store'
 
 module Velibe
 
   # Default values > Move
-  Favorites = [10035, 19003, 19004, 10031]
+  tmp_fav = KvStore.favorite_stations
+  Favorites =  tmp_fav.empty? ? [10035, 19003, 19004, 10031] : tmp_fav
 
   # TODO: try catch network exception
   # TODO lazy singleton!!
@@ -26,6 +28,11 @@ module Velibe
     puts "Velibe >> Stations #{stations.join(', ')}:"
     ApiVelib.get_stations(stations) { |station| StationStatus.print_from_json(station, '        > ') }
   end
+
   # TODO: Bench both?
+  def self.print_favorites
+    puts "Favorites #{Favorites}"
+  end
+
 
 end

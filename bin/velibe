@@ -5,6 +5,13 @@
 require 'velibe'
 
 ## Main
-Velibe.print_stations(ARGV)
 
+case ARGV[0]
+  when /f(av(orite)?)?$/
+    # handle favorites
+    Velibe.print_favorites
+  else
+    # TODO: check if all number
+    Velibe.print_stations(ARGV)
+end
 # garder sta à gauche du chevron?

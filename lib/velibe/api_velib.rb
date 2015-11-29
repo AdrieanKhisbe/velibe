@@ -8,7 +8,7 @@ module Velibe
     API_KEY = ENV['VELIBE_TOKEN'] || KvStore.token || raise('No token provided')
 
     API_HOST = 'https://api.jcdecaux.com'
-    API_PARAM= { contract: 'paris', apiKey: API_KEY }
+    API_PARAM = { contract: 'paris', apiKey: API_KEY }
     API_BASE_URI = '/vls/v1/stations'
 
     def self.get_station(station_number)
