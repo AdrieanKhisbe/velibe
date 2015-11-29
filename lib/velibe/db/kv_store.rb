@@ -14,17 +14,21 @@ module Velibe
       DB['token']
     end
 
-    def self.favorite_stations
-      DB[FAV_KEY] || []
+    def self.reset_favorite_stations
+      DB[FAV_KEY] = []
     end
-    DB[FAV_KEY]= [123] #FIXME
+
+    def self.favorite_stations
+      DB[FAV_KEY]
+    end
+
     def self.add_favorite_station(*stations)
       fav = DB[FAV_KEY]
       # TODO: handle setup
-
+      # TODO: check existing station
       stations.each { |station| fav.push(station) unless fav.include?(station) }
+      DB[FAV_KEY] = fav
     end
-
 
   end
 end

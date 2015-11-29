@@ -10,12 +10,14 @@ module Velibe
 
   # Default values > Move
   tmp_fav = KvStore.favorite_stations
-  Favorites =  tmp_fav.empty? ? [10035, 19003, 19004, 10031] : tmp_fav
+  Favorites = tmp_fav.nil? ? [10035, 19003, 19004, 10031] : tmp_fav
 
   # TODO: try catch network exception
   # TODO lazy singleton!!
 
+  # TODO extract cli class, and include!
   # §maybe: class CLI
+
 
   def self.print_stations(stations)
     stations = Favorites if stations.empty? or !stations
@@ -32,13 +34,20 @@ module Velibe
   # TODO: Bench both?
 
 
-
   def self.print_favorites
-    puts "Favorites #{Favorites}"
+    if Favorites.empty?
+      puts 'No favorites so far, you can add some with `velibe favorite add <your> <number>`.'
+    else
+      puts "Favorites Stations: #{Favorites.join(', ')}"
+    # TODO: print details with db
+    end
+  end
+
+  def self.reset_favorites(force = false)
+    KvStore.reset_favorite_stations if force or KvStore.favorite_stations.empty?
   end
 
   def self.add_favorite(stations)
-  puts stations
     KvStore.add_favorite_station(*stations)
   end
 

@@ -1,24 +1,29 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
-## My Velib Querier
+## My Velib Querrier
 
 require 'velibe'
-
-## Main
 
 case ARGV[0]
   when /f(av(orite)?)?$/
     # handle favorites
-    if /a(dd)?/ =~ ARGV[1]
-      stations = ARGV[2..-1]
-      # TODO: check if all number
-      Velibe.add_favorite(stations)
-    else
-      Velibe.print_favorites
+    case ARGV[1]
+      when /a(dd)?/
+        stations = ARGV[2..-1]
+        # TODO: check if all number
+        Velibe.add_favorite(stations)
+      when /setup|reset/
+        force = ARGV[2..-1].any? { |s| /-(f|-force)/ }
+        if Velibe.reset_favorites(force)
+          puts 'Favorites Stations were reset'
+        else
+          puts 'Favorites not empty, you need to add --force/-f flag if you really want to reset'
+        end
+      else
+        Velibe.print_favorites
     end
 
   else
     # TODO: check if all number
     Velibe.print_stations(ARGV)
 end
-# garder sta à gauche du chevron?
