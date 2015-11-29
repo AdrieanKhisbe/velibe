@@ -30,8 +30,16 @@ module Velibe
   end
 
   # TODO: Bench both?
+
+
+
   def self.print_favorites
     puts "Favorites #{Favorites}"
+  end
+
+  def self.add_favorite(stations)
+  puts stations
+    KvStore.add_favorite_station(*stations)
   end
 
 

@@ -9,7 +9,14 @@ require 'velibe'
 case ARGV[0]
   when /f(av(orite)?)?$/
     # handle favorites
-    Velibe.print_favorites
+    if /a(dd)?/ =~ ARGV[1]
+      stations = ARGV[2..-1]
+      # TODO: check if all number
+      Velibe.add_favorite(stations)
+    else
+      Velibe.print_favorites
+    end
+
   else
     # TODO: check if all number
     Velibe.print_stations(ARGV)
