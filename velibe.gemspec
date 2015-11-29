@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'velibe'
   spec.version       = Velibe::VERSION
   spec.authors       = ['Adriean Khisbe']
-  spec.email         = ["adriean.khisbe@live.fr"]
+  spec.email         = ['adriean.khisbe@live.fr']
   spec.summary       = %q{Small Velib Utility}
   spec.description   = %q{Wrapper for Velib api, for no-fuss cycling}
   spec.homepage      = 'https://github.com/AdrieanKhisbe/velibe' 
@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'http', '~> 0.9.8'
   spec.add_dependency 'sqlite3'
   spec.add_dependency 'activerecord'
+  spec.add_dependency 'moneta', '~> 0.8'
 
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake'
