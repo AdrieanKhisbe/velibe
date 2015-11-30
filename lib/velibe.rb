@@ -43,13 +43,18 @@ module Velibe
     end
   end
 
+  # FIXME: text display from there
   def self.reset_favorites(force = false)
     KvStore.reset_favorite_stations if force or KvStore.favorite_stations.empty?
+    # FIXME: ensure backup!! [store in history array]
   end
 
   def self.add_favorite(stations)
     KvStore.add_favorite_station(*stations)
   end
 
+  def self.setup_station_database(force = false)
+    Database.create if not Database.exist? or force
+  end
 
 end

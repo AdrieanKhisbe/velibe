@@ -5,15 +5,15 @@
 require 'velibe'
 
 case ARGV[0]
-  when /f(av(orite)?)?$/
-    # handle favorites
+  when /f(av(orite)?)?$/  # handle favorites
+    stations = ARGV[2..-1] || []
+    force = ARGV[2..-1].any? { |s| /-(f|-force)/ }
+
     case ARGV[1]
       when /a(dd)?/
-        stations = ARGV[2..-1]
         # TODO: check if all number
         Velibe.add_favorite(stations)
       when /setup|reset/
-        force = ARGV[2..-1].any? { |s| /-(f|-force)/ }
         if Velibe.reset_favorites(force)
           puts 'Favorites Stations were reset'
         else
@@ -22,7 +22,10 @@ case ARGV[0]
       else
         Velibe.print_favorites
     end
-
+  when /setup/
+    force = ARGV[1] =~ /-(f|-force)/
+    Velibe.setup_station_database(force)
+    Velibe.reset_favorites(force)
   else
     # TODO: check if all number
     Velibe.print_stations(ARGV)

@@ -9,7 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - favorites storage with a `.velibe.yaml`
 - commands to *display*, *add* and *reset* favorites
-- CI setup (see badge on README)
+- CI setup (see badge on README): unit test, coverage, travis and coveralls
 
 ## [0.1.0] - 2015-11-18
 ### Changed
@@ -17,7 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.0.2] - 2015-11-11
 ### Added
-- Data and draft of sqlite dtabse for storing stations and some stats
+- Data and draft of sqlite database for storing stations and some stats
 ### Fixed
 - naming convention
 ### Changed
