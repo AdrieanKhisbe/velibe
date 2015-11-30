@@ -19,8 +19,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'http', '~> 0.9.8'
-  spec.add_dependency 'sqlite3'
-  spec.add_dependency 'activerecord'
+  spec.add_dependency 'sqlite3', '~> 1.3'
+  spec.add_dependency 'activerecord', '~> 4'
   spec.add_dependency 'moneta', '~> 0.8'
 
   spec.add_development_dependency 'bundler', '~> 1.6'

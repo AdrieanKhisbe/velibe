@@ -7,6 +7,7 @@ VeLibe
 [![Build Status](https://travis-ci.org/AdrieanKhisbe/velibe.svg)](https://travis-ci.org/AdrieanKhisbe/velibe)
 [![Coverage Status](https://coveralls.io/repos/AdrieanKhisbe/velibe/badge.svg?branch=master&service=github)](https://coveralls.io/github/AdrieanKhisbe/velibe?branch=master)
 [![Code Climate](https://codeclimate.com/github/AdrieanKhisbe/velibe/badges/gpa.svg)](https://codeclimate.com/github/AdrieanKhisbe/velibe)
+[![Dependency Status](https://gemnasium.com/AdrieanKhisbe/velibe.svg)](https://gemnasium.com/AdrieanKhisbe/velibe)
 
 CLI tool included to help you see if there is bikes around.
 
