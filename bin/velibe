@@ -11,7 +11,8 @@ case ARGV[0]
 
     case ARGV[1]
       when /a(dd)?/
-        # TODO: check if all number
+        stations, wrong_arg = stations.partition { |n| n =~ /\d+/ }
+        puts "BEWARE: '#{wrong_arg.join(', ')}' are not stations number and where ignored"
         Velibe.add_favorite(stations)
       when /setup|reset/
         if Velibe.reset_favorites(force)
@@ -22,11 +23,14 @@ case ARGV[0]
       else
         Velibe.print_favorites
     end
-  when /setup/
+
+  when /setup/ # setup database
     force = ARGV[1] =~ /-(f|-force)/
     Velibe.setup_station_database(force)
     Velibe.reset_favorites(force)
-  else
-    # TODO: check if all number
-    Velibe.print_stations(ARGV)
+
+  else # just Query stations
+    stations, wrong_arg = ARGV.partition { |n| n =~ /\d+/ }  # LATER: check station really exist
+    puts "BEWARE: '#{wrong_arg.join(', ')}' are not stations number and were ignored"
+    Velibe.print_stations(stations)
 end

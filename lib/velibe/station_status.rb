@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# §todo: new Station will go in module
-# Todo: put in sub file?
-
 module Velibe
   class StationStatus
     attr_reader :name, :available_bikes, :available_bike_stands
@@ -38,8 +35,7 @@ module Velibe
       self.can_leave? and station.can_go?
     end
 
-    #  TODO rename
-    def self.string_from_hash(json)
+    def self.string_from_json(json)
       StationStatus.from_hash(json).to_s
     end
 
