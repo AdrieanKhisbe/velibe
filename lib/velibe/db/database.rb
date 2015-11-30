@@ -41,11 +41,8 @@ module Velibe
       # §maybe: delete?  [not that working?]
     end
 
-    # §todo: version block?
-
     def self.prune
-      #§later: check no connected?
-      FileUtils.rm(DB_PATH) if exist?
+      FileUtils.rm(DB_PATH) if self.exist?
     end
 
     #
@@ -68,10 +65,9 @@ module Velibe
           t.integer :available_bikes
           t.integer :available_bike_stands
           t.timestamp :last_update
-          # t.timestamps
         end
 
-        #§todo: create others
+        # §todo: create others
 
       end
     end
@@ -87,7 +83,6 @@ module Velibe
           #  header_converters: :underscore -> tried but get: NoMethodError: undefined method `arity' for nil:NilClass
           Station.create(number: row['Number'], name: row['Name'], address: row['Address'],
                          latitude: row['Latitude'], longitude: row['Longitude'])
-          # ¤note: inspect send back a hash
         end
       end
     end
