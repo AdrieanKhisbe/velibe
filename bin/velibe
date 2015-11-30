@@ -12,7 +12,7 @@ case ARGV[0]
     case ARGV[1]
       when /a(dd)?/
         stations, wrong_arg = stations.partition { |n| n =~ /\d+/ }
-        puts "BEWARE: '#{wrong_arg.join(', ')}' are not stations number and where ignored"
+        puts "BEWARE: '#{wrong_arg.join(', ')}' are not stations number and where ignored" unless wrong_arg.empty?
         Velibe.add_favorite(stations)
       when /setup|reset/
         if Velibe.reset_favorites(force)
@@ -31,6 +31,6 @@ case ARGV[0]
 
   else # just Query stations
     stations, wrong_arg = ARGV.partition { |n| n =~ /\d+/ }  # LATER: check station really exist
-    puts "BEWARE: '#{wrong_arg.join(', ')}' are not stations number and were ignored"
+    puts "BEWARE: '#{wrong_arg.join(', ')}' are not stations number and were ignored" unless wrong_arg.empty?
     Velibe.print_stations(stations)
 end
