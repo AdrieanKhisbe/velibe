@@ -13,9 +13,7 @@ if ENV['TRAVIS']
   # Eager load the entire lib directory so that SimpleCov is able to report
   # accurate code coverage metrics.
   at_exit { Dir["#{velibe_lib}/**/*.rb"].each { |rb| require(rb) } }
-else
-
-  $LOAD_PATH.unshift velibe_lib
-  require 'velibe'
 end
 
+$LOAD_PATH.unshift velibe_lib
+require 'velibe'
