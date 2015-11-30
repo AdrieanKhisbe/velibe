@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 
-describe StationStatus do
+describe Velibe::StationStatus do
 
   describe '#new' do
 
     context 'Can create Status with proper values' do
 
-      let(:status) { StationStatus.new 'AB', available_bikes= 2, available_bike_stands=4 }
+      let(:status) { Velibe::StationStatus.new 'AB', available_bikes= 2, available_bike_stands=4 }
 
       it 'has proper name' do
         expect(status.name).to eq 'AB'
@@ -26,7 +26,7 @@ describe StationStatus do
 
      context 'handle valid input values' do
         let(:data) { { name: 'station', available_bikes: 2, available_bike_stands:4 } }
-        let(:status) { StationStatus.from_hash(data) }
+        let(:status) { Velibe::StationStatus.from_hash(data) }
         it 'capitalize station name' do expect(status.name).to eq 'Station' end
         it { expect(status.available_bikes).to eq 2 }
 
