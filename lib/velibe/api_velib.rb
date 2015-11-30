@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 require 'http'
 require 'json'
+require 'velibe/db/kv_store' # TODO: refactor injection?
 
 module Velibe
   class ApiVelib
 
-    API_KEY = ENV['VELIBE_TOKEN'] || KvStore.token || raise('No token provided')
+    API_KEY = ENV['VELIBE_TOKEN'] || Velibe::KvStore.token || raise('No token provided')
 
     API_HOST = 'https://api.jcdecaux.com'
     API_PARAM = { contract: 'paris', apiKey: API_KEY }
