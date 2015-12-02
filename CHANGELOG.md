@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## [0.2.2] - 2015-12-02
+### Fixed
+- fix broken due to missing import
+
 ## [0.2.1] - 2015-11-30
 ### Added
 - documentation about new commands and config
