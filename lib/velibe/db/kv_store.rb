@@ -15,8 +15,8 @@ module Velibe
       DB['token']
     end
 
-    def self.reset_favorite_stations
-      DB[FAV_KEY] = []
+    def self.reset_favorite_stations(new_stations = [])
+      DB[FAV_KEY] = new_stations
     end
 
     def self.favorite_stations

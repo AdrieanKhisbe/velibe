@@ -4,12 +4,10 @@ Feature: Playing with favorites
   I want to be handle to manage favorite
 
 
-# TODO: background: favorites set up
-
+Background: Favorites Exists
+  Given my favorites stations are 22, 42, 68
 
 Scenario: List favorites
-
-
 
 Scenario: Add a Favorite
 

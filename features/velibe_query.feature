@@ -3,9 +3,8 @@ Feature: Querying the API
   As a user of the velibe cli
   I want to be able to query the api through the velibe cli
 
-
-# TODO: background: favorites set up
-
+Background: Favorites Exists
+  Given my favorites stations are 22, 42, 68
 
 Scenario: By Default, my favorites are queried
   Given a file named "file.txt" with:
