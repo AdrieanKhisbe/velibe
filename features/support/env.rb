@@ -1,3 +1,4 @@
+require 'aruba/cucumber'
 velibe_lib = File.expand_path('../../lib', __FILE__)
 
 if ENV['TRAVIS']

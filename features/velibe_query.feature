@@ -8,7 +8,14 @@ Feature: Querying the API
 
 
 Scenario: By Default, my favorites are queried
-
+  Given a file named "file.txt" with:
+   """
+   Hello World
+   """
+  Then the file "file.txt" should contain:
+   """
+   Hello World
+   """
 
 
 Scenario: I can specify the station i'm interested into
