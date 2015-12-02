@@ -8,6 +8,8 @@ if ENV['TRAVIS']
   SimpleCov.start do
     # No need to report coverage metrics for the test code
     add_filter 'test'
+    add_filter 'features'
+    add_filter 'data'
   end
 
   # Eager load the entire lib directory so that SimpleCov is able to report
