@@ -10,7 +10,7 @@ rvm:
 before_install: gem install bundler
 install: bundle install
 script:
-  - bundle exec rake spec
+  - bundle exec rake test
 
 matrix:
   fast_finish: true
