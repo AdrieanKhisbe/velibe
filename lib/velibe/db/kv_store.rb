@@ -11,11 +11,19 @@ module Velibe
     KV_DB = Moneta.new(:YAML, file: KV_PATH)
     FAV_KEY = 'favorites'
 
+    def self.db
+      KV_DB
+    end
+
+    def self.fav_key
+      FAV_KEY
+    end
+
     def self.token
       KV_DB['token']
     end
 
-    def self.reset_favorite_stations(new_stations = [])
+    def self.reset_favorite_stations(*new_stations)
       KV_DB[FAV_KEY] = new_stations.collect(&:to_i)
     end
 

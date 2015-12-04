@@ -4,6 +4,9 @@ All notable changes to *Velibe* will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+### Fixed
+- ensure favorites stations are stored as integer
+- prevent running test to destroy your config :)
 
 ## [0.2.2] - 2015-12-02
 ### Fixed
