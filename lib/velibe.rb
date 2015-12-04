@@ -50,7 +50,7 @@ module Velibe
   end
 
   def self.add_favorite(stations)
-    KvStore.add_favorite_station(*stations)
+    KvStore.add_favorite_station *stations
   end
 
   def self.setup_station_database(force = false)
