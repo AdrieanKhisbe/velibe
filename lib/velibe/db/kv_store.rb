@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
 require 'moneta'
 require 'pathname'
+require 'velibe/config'
 
 module Velibe
 
   module KvStore
-    NAME = '~/.velib.yaml' # TODO: more generic
-    PATH = Pathname.new(NAME).expand_path
-    DB = Moneta.new(:YAML, file: PATH)
+    include Config
 
+    KV_DB = Moneta.new(:YAML, file: KV_PATH)
     FAV_KEY = 'favorites'
 
     def self.token
-      DB['token']
+      KV_DB['token']
     end
 
     def self.reset_favorite_stations(new_stations = [])
-      DB[FAV_KEY] = new_stations
+      KV_DB[FAV_KEY] = new_stations
     end
 
     def self.favorite_stations
-      DB[FAV_KEY]
+      KV_DB[FAV_KEY]
     end
 
     def self.add_favorite_station(*stations)
@@ -28,7 +28,7 @@ module Velibe
       # TODO: handle setup
       # TODO: check existing station
       stations.each { |station| fav.push(station) unless fav.include?(station) }
-      DB[FAV_KEY] = fav
+      KV_DB[FAV_KEY] = fav
     end
 
   end

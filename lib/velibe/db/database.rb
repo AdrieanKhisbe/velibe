@@ -6,15 +6,12 @@ require 'sqlite3'
 require 'active_record'
 require 'csv'
 require 'velibe/db/models'
+require 'velibe/config'
 
 module Velibe
 
   module Database
-    DB_NAME = '~/.velib.db' # TODO: more generic + config
-    DB_PATH = Pathname.new(DB_NAME).expand_path # .to_s?
-    DATA_CSV = '../../../data/Paris.csv'
-    DATA_CSV_FILE = File.join(File.dirname(File.expand_path(__FILE__)), DATA_CSV)
-    #  §see: http://stackoverflow.com/questions/7828066/accessing-files-packaged-into-a-ruby-gem
+    include Config
 
     def self.exist?
       DB_PATH.exist? # §check
