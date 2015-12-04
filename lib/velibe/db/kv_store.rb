@@ -32,10 +32,12 @@ module Velibe
     end
 
     def self.add_favorite_station(*stations)
-      fav = DB[FAV_KEY]
+      fav = KV_DB[FAV_KEY]
       # TODO: handle setup
       # TODO: check existing station
-      stations.collect(&:to_i).each { |station| fav.push(station) unless fav.include?(station) }
+      stations.collect(&:to_i).each do |station|
+        fav.push(station) unless fav.include?(station)
+        end
       KV_DB[FAV_KEY] = fav
     end
 
