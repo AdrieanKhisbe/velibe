@@ -8,7 +8,7 @@ module Velibe
 
     DATA_CSV_FILE = File.join(File.dirname(File.expand_path(__FILE__)), DATA_CSV)
 
-    KV_NAME =  ENV['VELIBE_CONFIG_PATH']|| '~/.velib.yaml'
+    KV_NAME =  ENV['VELIBE_CONFIG_PATH'] || '~/.velib.yaml'
     KV_PATH = Pathname.new(KV_NAME).expand_path
 
   end

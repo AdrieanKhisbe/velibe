@@ -1,5 +1,9 @@
 velibe_lib = File.expand_path('../../lib', __FILE__)
 
+ENV['VELIBE_DB_PATH'] = '/tmp/velibe.db'
+ENV['VELIBE_CONFIG_PATH'] = '/tmp/velibe.yaml'
+ENV['VELIBE_TOKEN'] = 'fake-test-value'
+
 if ENV['TRAVIS']
   require 'simplecov'
   require 'coveralls'
