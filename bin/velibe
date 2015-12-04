@@ -7,7 +7,6 @@ require 'velibe'
 case ARGV[0]
   when /f(av(orite)?)?$/  # handle favorites
     stations = ARGV[2..-1] || []
-    force = ARGV[2..-1].any? { |s| /-(f|-force)/ }
 
     case ARGV[1]
       when /a(dd)?/
@@ -15,6 +14,7 @@ case ARGV[0]
         puts "BEWARE: '#{wrong_arg.join(', ')}' are not stations number and where ignored" unless wrong_arg.empty?
         Velibe.add_favorite(stations)
       when /setup|reset/
+        force = (ARGV[2..-1]||[]).any? { |s| /-(f|-force)/ }
         if Velibe.reset_favorites(force)
           puts 'Favorites Stations were reset'
         else
